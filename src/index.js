@@ -17,7 +17,8 @@ export default {
     async openBrowser (id, pageUrl) {
         this.browser = await dappeteer.launch(puppeteer, {
             timeout:  10000,
-            headless: false
+            headless: false,
+            defaultViewport: null
         });
 
         this.metamask = await dappeteer.getMetamask(this.browser);
