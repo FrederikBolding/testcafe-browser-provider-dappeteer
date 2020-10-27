@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 import puppeteer from 'puppeteer';
-import dappeteer from 'dappeteer';
+import { launch, getMetamask } from 'dappeteer';
 
 export default {
     // Multiple browsers support
@@ -15,13 +15,13 @@ export default {
      * @param {string} pageUrl url to navigate to after creating browser
      */
     async openBrowser (id, pageUrl) {
-        this.browser = await dappeteer.launch(puppeteer, {
+        this.browser = await launch(puppeteer, {
             timeout:         10000,
             headless:        false,
             defaultViewport: null
         });
 
-        this.metamask = await dappeteer.getMetamask(this.browser);
+        this.metamask = await getMetamask(this.browser);
 
         const page = await this.browser.newPage();
         
